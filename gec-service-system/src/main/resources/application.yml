@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: service-system    # 配置当前spring应用名称
+  profiles:
+    active: dev  #  指定当前是加载dev的配置文件
