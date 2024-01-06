@@ -27,6 +27,10 @@ public class LoginController {
         return Result.ok(map);
     }
 
+    /**
+     * 获取用户信息
+     * @return
+     */
     @GetMapping(value = "/info")
     public Result info() {
         Map<String, Object> map = new HashMap<>();
