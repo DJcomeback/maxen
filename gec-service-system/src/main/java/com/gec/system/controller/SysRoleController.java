@@ -36,7 +36,7 @@ public class SysRoleController {
     }
 
         // 根据id 去逻辑删除
-    @ApiOperation("逻辑删除接口")
+    @ApiOperation("根据ID逻辑删除")
     @DeleteMapping("/remove/{id}")
     public Result<Boolean> remove(@PathVariable Long id) {
         boolean isSuccess = sysRoleService.removeById(id);
