@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
     @Override
     public IPage<SysRole> selectPage(IPage<SysRole> page1, SysRoleQueryVo roleQueryVo) {
-        IPage<SysRole> selectPage = this.baseMapper.selectPage(page1, roleQueryVo);
-        return selectPage;
+        return this.baseMapper.selectPage(page1, roleQueryVo);
     }
 }

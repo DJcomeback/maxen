@@ -12,6 +12,7 @@ import com.gec.model.system.SysRoleMenu;
  * @author maXen
  * @since 2024-01-08
  */
+
 public interface SysRoleMenuService extends IService<SysRoleMenu> {
 
 }

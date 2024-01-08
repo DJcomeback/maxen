@@ -6,6 +6,7 @@ import com.gec.system.mapper.SysRoleMenuMapper;
 import com.gec.system.service.SysRoleMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
  * @since 2024-01-08
  */
 @Service
+@Transactional
 public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements SysRoleMenuService {
 
 }
