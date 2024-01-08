@@ -23,20 +23,6 @@ public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
 
-//    // 查询全部角色
-//    @ApiOperation("查询全部接口")
-//    @GetMapping("/findAll")
-//    public List<SysRole> findAll() {
-//        return sysRoleService.list();
-//    }
-//
-//    // 根据id 去逻辑删除
-//    @ApiOperation("逻辑删除接口")
-//    @DeleteMapping("/remove/{id}")
-//    public boolean remove(@PathVariable Long id) {
-//        return sysRoleService.removeById(id);
-//    }
-//
 // 查询全部角色
     @ApiOperation("查询全部接口")
     @GetMapping("/findAll")
