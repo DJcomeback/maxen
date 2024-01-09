@@ -42,7 +42,7 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
         //获取用户已分配的角色ID
         List<Long> roleIds = new ArrayList<>();
         for (SysUserRole sysUserRole : sysUserRoles) {
-            roleIds.add(sysUserRole.getUserId());
+            roleIds.add(sysUserRole.getRoleId());
         }
 
         //创建返回的Map
