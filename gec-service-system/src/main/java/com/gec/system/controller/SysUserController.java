@@ -1,8 +1,9 @@
 package com.gec.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.gec.model.system.SysUser;
 import com.gec.model.vo.SysUserQueryVo;
-import com.gec.system.entity.SysUser;
+
 import com.gec.system.service.SysUserService;
 import com.gec.system.util.Result;
 import io.swagger.annotations.Api;
@@ -52,7 +53,7 @@ public class SysUserController {
 
     //删除用户
     @ApiOperation("根据ID逻辑删除用户")
-    @PostMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public Result remove(@PathVariable Long id) {
         boolean isSuccess = sysUserService.removeById(id);
         return isSuccess ? Result.ok() : Result.fail();
@@ -65,4 +66,5 @@ public class SysUserController {
         boolean isSuccess = sysUserService.removeByIds(ids);
         return isSuccess ? Result.ok() : Result.fail();
     }
+
 }

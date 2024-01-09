@@ -2,9 +2,12 @@ package com.gec.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gec.model.system.SysRole;
+import com.gec.model.system.SysUserRole;
+import com.gec.model.vo.AssginRoleVo;
 import com.gec.model.vo.SysRoleQueryVo;
 import com.gec.system.exception.MyCustomerException;
 import com.gec.system.service.SysRoleService;
+import com.gec.system.service.SysUserRoleService;
 import com.gec.system.util.Result;
 import com.gec.system.util.ResultCodeEnum;
 import io.swagger.annotations.Api;
@@ -22,6 +25,9 @@ public class SysRoleController {
 
     @Autowired
     private SysRoleService sysRoleService;
+
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
 
 // 查询全部角色
     @ApiOperation("查询全部接口")
@@ -81,4 +87,21 @@ public class SysRoleController {
         boolean isSuccess = sysRoleService.removeByIds(ids);
         return isSuccess ? Result.ok() : Result.fail();
     }
+
+
+    // 根据用户ID获取角色数据
+    @ApiOperation("根据用户ID获取角色数据")
+    @GetMapping("/toAssign/{userId}")
+    public Result toAssign(@PathVariable Long userId){
+        return Result.ok(sysUserRoleService.getRolesByUserId(userId));
+    }
+
+    // 根据用户分配角色
+    @ApiOperation(value = "根据用户分配角色")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestBody AssginRoleVo assginRoleVo) {
+        sysUserRoleService.doAssign(assginRoleVo);
+        return Result.ok();
+    }
+
 }
