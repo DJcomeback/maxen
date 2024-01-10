@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gec.model.system.SysMenu;
 import com.gec.system.exception.MyCustomerException;
 import com.gec.system.mapper.SysMenuMapper;
+import com.gec.system.mapper.SysRoleMenuMapper;
 import com.gec.system.service.SysMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gec.system.util.MenuHelper;
@@ -27,7 +28,7 @@ import java.util.List;
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
 
     @Autowired
-    private SysMenuMapper sysMenuMapper;
+    private SysRoleMenuMapper sysRoleMenuMapper;
 
     @Override
     public List<SysMenu> findNodes() {
