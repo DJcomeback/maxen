@@ -2,13 +2,15 @@ package com.gec.system.controller;
 
 
 import com.gec.model.system.SysMenu;
-import com.gec.system.mapper.SysMenuMapper;
+import com.gec.model.vo.AssginMenuVo;
 import com.gec.system.service.SysMenuService;
-import com.gec.system.util.Result;
+import com.gec.system.common.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -56,6 +58,20 @@ public class SysMenuController {
     public Result updateMenu(@RequestBody SysMenu sysMenu) {
         boolean isSuccess = sysMenuService.updateById(sysMenu);
         return isSuccess? Result.ok() : Result.fail();
+    }
+
+    // 根据角色分配菜单
+    @ApiOperation("根据角色获取菜单")
+    @GetMapping("/toAssign/{roleId}")
+    public Result toAssign(@PathVariable Long roleId){
+        List<SysMenu> list =   this.sysMenuService.findSysMenuByRoleId(roleId);
+        return Result.ok(list);
+    }
+    @ApiOperation(value = "给角色分配权限")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestBody AssginMenuVo assginMenuVo) {
+        sysMenuService.doAssign(assginMenuVo);
+        return Result.ok();
     }
 }
 

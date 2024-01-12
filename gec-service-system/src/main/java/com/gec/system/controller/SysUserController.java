@@ -5,7 +5,8 @@ import com.gec.model.system.SysUser;
 import com.gec.model.vo.SysUserQueryVo;
 
 import com.gec.system.service.SysUserService;
-import com.gec.system.util.Result;
+import com.gec.system.common.Result;
+import com.gec.system.util.MD5Helper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,10 @@ public class SysUserController {
     @ApiOperation("添加用户")
     @PostMapping("/addUser")
     public Result addUser(@RequestBody SysUser sysUser) {
+        //加密
+        String passwordMD5 = MD5Helper.encrypt(sysUser.getPassword());
+        //设置密码
+        sysUser.setPassword(passwordMD5);
         boolean isSuccess = sysUserService.save(sysUser);
         return isSuccess ? Result.ok() : Result.fail();
     }
@@ -66,5 +71,7 @@ public class SysUserController {
         boolean isSuccess = sysUserService.removeByIds(ids);
         return isSuccess ? Result.ok() : Result.fail();
     }
+
+
 
 }

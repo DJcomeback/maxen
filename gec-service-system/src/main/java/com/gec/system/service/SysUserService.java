@@ -8,6 +8,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
+import java.util.Objects;
+
 /**
  * <p>
  * 用户表 服务类
@@ -21,4 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface SysUserService extends IService<SysUser> {
     IPage<SysUser> selectPage(IPage<SysUser> iPage, SysUserQueryVo sysUserQueryVo);
 
+    SysUser getUserInfoUserName(String username);
+
+    Map<String, Object> getUserInfo(String username);
 }

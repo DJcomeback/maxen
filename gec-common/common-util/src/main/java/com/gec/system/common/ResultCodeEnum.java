@@ -1,4 +1,4 @@
-package com.gec.system.util;
+package com.gec.system.common;
 
 import lombok.Getter;
 

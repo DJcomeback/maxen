@@ -1,7 +1,6 @@
 package com.gec.system.exception;
 
-import com.gec.system.util.Result;
-import org.springframework.stereotype.Controller;
+import com.gec.system.common.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

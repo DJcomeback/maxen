@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuHelper {
+
     //构建树形结构
     public static List<SysMenu> bulidTree(List<SysMenu> sysMenuList) {
         //创建集合封装最终数据

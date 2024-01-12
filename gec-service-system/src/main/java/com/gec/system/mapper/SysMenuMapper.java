@@ -3,6 +3,9 @@ package com.gec.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gec.model.system.SysMenu;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,5 +16,5 @@ import com.gec.model.system.SysMenu;
  * @since 2024-01-09
  */
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
-
+    List<SysMenu> findListByUserId(@Param("userId") Long userId);
 }

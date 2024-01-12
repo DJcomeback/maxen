@@ -2,14 +2,11 @@ package com.gec.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gec.model.system.SysRole;
-import com.gec.model.system.SysUserRole;
 import com.gec.model.vo.AssginRoleVo;
 import com.gec.model.vo.SysRoleQueryVo;
-import com.gec.system.exception.MyCustomerException;
 import com.gec.system.service.SysRoleService;
 import com.gec.system.service.SysUserRoleService;
-import com.gec.system.util.Result;
-import com.gec.system.util.ResultCodeEnum;
+import com.gec.system.common.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
