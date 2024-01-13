@@ -12,6 +12,7 @@
         <module>gec-common</module>
         <module>gec-model</module>
         <module>gec-service-system</module>
+
     </modules>
 
     <parent>

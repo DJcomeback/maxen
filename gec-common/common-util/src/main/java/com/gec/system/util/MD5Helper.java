@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 
 /**
- * @author  大飞   2019/01/18
+ * @author  maXen   2024/01/13
  *
  * 快速 实现 MD5 加密工具类
  *

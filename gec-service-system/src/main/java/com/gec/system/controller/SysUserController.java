@@ -72,6 +72,4 @@ public class SysUserController {
         return isSuccess ? Result.ok() : Result.fail();
     }
 
-
-
 }
