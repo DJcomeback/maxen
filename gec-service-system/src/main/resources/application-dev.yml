@@ -7,7 +7,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql:///gec-auth?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: gec-auth
+    username: root
     password: 123456
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -32,11 +32,11 @@ spring:
 al:
   oss: #存储
     endpoint: oss-cn-guangzhou.aliyuncs.com   # 域
-    accessKeyId: LTAI5tFA8RZihNph7eWBRSVb  # 秘钥
-    accessKeySecret: 6EHn4VC64ZQTEYECoIe7ttAHFKkp7W # 秘钥
+    accessKeyId: your-accessKeyId  # 秘钥
+    accessKeySecret: your-secret # 秘钥
     bucketName: maxen  # 桶名
     url: https://maxen.oss-cn-guangzhou.aliyuncs.com  # 访问地址
   vod: # 视频
     regionId: cn-shanghai
-    accessKeyId: LTAI5tFA8RZihNph7eWBRSVb #登录账号
-    accessKeySecret: 6EHn4VC64ZQTEYECoIe7ttAHFKkp7W
+    accessKeyId: your-accessKeyId #登录账号
+    accessKeySecret: your-secret
