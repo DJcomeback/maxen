@@ -7,7 +7,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql:///gec-auth?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
+    username: gec-auth
     password: 123456
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
