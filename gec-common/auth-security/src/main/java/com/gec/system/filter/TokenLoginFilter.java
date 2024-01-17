@@ -8,9 +8,12 @@ import com.gec.model.vo.LoginVo;
 import com.gec.system.common.Result;
 import com.gec.system.common.ResultCodeEnum;
 import com.gec.system.custom.CustomUser;
+import com.gec.system.service.SysLoginLogService;
+import com.gec.system.util.IpUtil;
 import com.gec.system.util.JwtHelper;
 import com.gec.system.util.JwtUtil;
 import com.gec.system.util.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,42 +32,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
-
-    private AuthenticationManager authenticationManager;
     private RedisTemplate redisTemplate;
 
+    private SysLoginLogService sysLoginLogService;
 
-    public TokenLoginFilter(AuthenticationManager authenticationManager,RedisTemplate redisTemplate) {
+
+    public TokenLoginFilter(AuthenticationManager authenticationManager,RedisTemplate redisTemplate,SysLoginLogService sysLoginLogService) {
         setAuthenticationManager(authenticationManager);
         setPostOnly(false);
         setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/admin/system/index/login", "POST"));
         //redis
         this.redisTemplate = redisTemplate;
+
+        //登录日志
+        this.sysLoginLogService = sysLoginLogService;
     }
-
-    public TokenLoginFilter(AuthenticationManager authenticationManager,String url,RedisTemplate redisTemplate) {
-        this.authenticationManager = authenticationManager;
-        setPostOnly(false);
-
-        //指定登录url
-        setFilterProcessesUrl(url);
-
-        //redis
-        this.redisTemplate = redisTemplate;
-    }
-
-
-//    @Override
-//    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-//        try {
-//            LoginVo loginVo = new ObjectMapper().readValue(request.getInputStream(), LoginVo.class);
-//            System.out.println("请求账号：" + loginVo.getUsername());
-//            System.out.println("请求密码：" + loginVo.getPassword());
-//            return this.getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(loginVo.getUsername(), loginVo.getPassword()));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -72,12 +54,11 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
             LoginVo loginVo = new ObjectMapper().readValue(request.getInputStream(), LoginVo.class);
             System.out.println("请求账号：" + loginVo.getUsername());
             System.out.println("请求密码：" + loginVo.getPassword());
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginVo.getUsername(), loginVo.getPassword()));
+            return this.getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(loginVo.getUsername(), loginVo.getPassword()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
 
 
     /**
@@ -97,6 +78,10 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
         //保存权限数据
         redisTemplate.opsForValue().set(customUser.getUsername(), JSON.toJSONString(customUser.getAuthorities()));
+
+        //记录登录成功的日志
+        sysLoginLogService.recordLoginLog(customUser.getUsername(), 0, IpUtil.getIpAddress(request), "登录成功");
+
         Map<String, Object> map = new HashMap<>();
         map.put("token", token);
         ResponseUtil.out(response, Result.ok(map));

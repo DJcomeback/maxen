@@ -41,4 +41,9 @@ public class SysMovie extends BaseEntity {
 
     @TableField(exist = false)//不存储到数据库,仅仅用于前台数据展示
     private String playAuth;//播放秘钥
+
+    @TableField(exist = false)
+//    private String m_type;
+
+    private SysCategory sysCategory;
 }

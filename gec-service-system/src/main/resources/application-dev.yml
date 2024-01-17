@@ -29,15 +29,14 @@ spring:
       max-file-size: -1
       max-request-size: 500MB
 # 阿里配置
-# 阿里配置
-#al:
-#  oss: #存储
-#    endpoint: oss-cn-guangzhou.aliyuncs.com   # 域
-#    accessKeyId: LTAI5tEWQ4bfyZQz4ky7nByv  # 秘钥
-#    accessKeySecret: 3qYXIPB1uMa8Jq22teoKr6BcIZo7u0 # 秘钥
-#    bucketName: myvideo-demo  # 桶名
-#    url: https://myvideo-demo.oss-cn-guangzhou.aliyuncs.com  # 访问地址
-#  vod: # 视频
-#    regionId: cn-shanghai
-#    accessKeyId: LTAI5tEWQ4bfyZQz4ky7nByv #登录账号
-#    accessKeySecret: 3qYXIPB1uMa8Jq22teoKr6BcIZo7u0
+al:
+  oss: #存储
+    endpoint: oss-cn-guangzhou.aliyuncs.com   # 域
+    accessKeyId: LTAI5tFA8RZihNph7eWBRSVb  # 秘钥
+    accessKeySecret: 6EHn4VC64ZQTEYECoIe7ttAHFKkp7W # 秘钥
+    bucketName: maxen  # 桶名
+    url: https://maxen.oss-cn-guangzhou.aliyuncs.com  # 访问地址
+  vod: # 视频
+    regionId: cn-shanghai
+    accessKeyId: LTAI5tFA8RZihNph7eWBRSVb #登录账号
+    accessKeySecret: 6EHn4VC64ZQTEYECoIe7ttAHFKkp7W

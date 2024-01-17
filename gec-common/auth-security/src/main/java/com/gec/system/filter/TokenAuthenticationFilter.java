@@ -27,21 +27,22 @@ import java.util.Map;
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private RedisTemplate redisTemplate;
+
     public TokenAuthenticationFilter(RedisTemplate redisTemplate) {
-       this.redisTemplate = redisTemplate;
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        logger.info("uri:"+request.getRequestURI());
+        logger.info("uri:" + request.getRequestURI());
         //如果是登录接口，直接放行
-        if("/admin/system/index/login".equals(request.getRequestURI())) {
+        if ("/admin/system/index/login".equals(request.getRequestURI()) || "/admin/system/upload/uploadImage".equals(request.getRequestURI()) || "/admin/system/upload/uploadVideo".equals(request.getRequestURI())) {
             filterChain.doFilter(request, response);
             return;
         }
 
         UsernamePasswordAuthenticationToken authentication = getAuthentication(request);
-        if(null != authentication) {
+        if (null != authentication) {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             filterChain.doFilter(request, response);
         } else {
@@ -53,16 +54,16 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         // token置于header里
         String token = request.getHeader("token");
-        logger.info("token:"+token);
+        logger.info("token:" + token);
         if (!StringUtils.isEmpty(token)) {
             String useruame = JwtHelper.getUsername(token);
-            logger.info("useruame:"+useruame);
+            logger.info("useruame:" + useruame);
             if (!StringUtils.isEmpty(useruame)) {
                 String authoritiesString = (String) redisTemplate.opsForValue().get(useruame);
                 List<Map> mapList = JSON.parseArray(authoritiesString, Map.class);
                 List<SimpleGrantedAuthority> authorities = new ArrayList<>();
                 for (Map map : mapList) {
-                    authorities.add(new SimpleGrantedAuthority((String)map.get("authority")));
+                    authorities.add(new SimpleGrantedAuthority((String) map.get("authority")));
                 }
                 return new UsernamePasswordAuthenticationToken(useruame, null, authorities);
                 //return new UsernamePasswordAuthenticationToken(useruame, null, Collections.emptyList());

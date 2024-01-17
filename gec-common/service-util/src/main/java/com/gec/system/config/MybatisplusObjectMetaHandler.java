@@ -19,6 +19,9 @@ public class MybatisplusObjectMetaHandler implements MetaObjectHandler {
 
         this.setFieldValByName("createTime",new Date(),metaObject);
         this.setFieldValByName("updateTime",new Date(),metaObject);
+//        this.setFieldValByName("path","/",metaObject);
+//        this.setFieldValByName("component","Layout",metaObject);
+
 
     }
 

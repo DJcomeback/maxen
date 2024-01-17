@@ -29,7 +29,7 @@ public class SysMenu extends BaseEntity {
 	private Integer type;
 
 	@ApiModelProperty(value = "路由地址")
-	@TableField("path")
+	@TableField(value = "path")
 	private String path;
 
 	@ApiModelProperty(value = "组件路径")
